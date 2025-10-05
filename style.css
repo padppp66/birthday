@@ -1,0 +1,131 @@
+/* กำหนดสีพาสเทลและฟอนต์ที่น่ารัก */
+:root {
+    --pastel-bg: #f5f2f9; /* พื้นหลังม่วงอ่อน/ขาว */
+    --pastel-envelope: #d4a5d4; /* สีซองม่วงพาสเทล */
+    --pastel-flap: #e6b9e6; /* สีฝาซองชมพูอมม่วงอ่อน */
+    --pastel-accent: #a879a8; /* สีเน้นข้อความ */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    /* ใช้สีพื้นหลังพาสเทล */
+    background-color: var(--pastel-bg);
+    /* ใช้ฟอนต์ Mali ที่ดึงมาใน HTML */
+    font-family: 'Itim', cursive;
+    text-align: center;
+    color: #4b4b4b; /* สีข้อความเข้มขึ้นมาหน่อยแต่ยังคงความอ่อนโยน */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instruction {
+    margin-top: 20px;
+    color: var(--pastel-accent);
+    font-size: 1.3em; /* ขยายให้ดูชัดเจนขึ้น */
+    font-weight: 700; /* ให้หนาขึ้น */
+}
+
+/* ------------------- สไตล์ซองจดหมาย ------------------- */
+.envelope {
+    width: 250px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 1s;
+}
+
+.flap {
+    width: 0;
+    height: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    /* ใช้สีฝาซองพาสเทล */
+    border-top: 75px solid var(--pastel-flap);
+    position: absolute;
+    top: 0;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+    z-index: 2;
+}
+
+.body {
+    width: 250px;
+    height: 150px;
+    /* ใช้สีตัวซองพาสเทล */
+    background-color: var(--pastel-envelope);
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5em; /* ขยายหัวใจให้ดูน่ารัก */
+    z-index: 3;
+    transition: opacity 0.3s;
+}
+
+/* ------------------- สถานะซองจดหมาย 'เปิด' ------------------- */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.open .heart {
+    opacity: 0;
+}
+
+/* ------------------- สไตล์ข้อความด้านใน ------------------- */
+.letter-content {
+    width: 80%;
+    max-width: 500px;
+    padding: 40px; /* ขยาย Padding */
+    background-color: #ffffff;
+    border: 5px solid var(--pastel-accent); /* เน้นขอบให้สวยงามขึ้น */
+    border-radius: 20px; /* โค้งมนมากขึ้น */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s, transform 0.8s;
+    margin-top: -150px;
+    z-index: 4;
+    position: relative;
+}
+
+.letter-content h1 {
+    color: var(--pastel-accent);
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.letter-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.letter-content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.photo {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 15px; /* โค้งมนมากขึ้น */
+    border: 3px solid var(--pastel-flap); /* ใส่กรอบรูปเล็กน้อย */
+    margin-top: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
